@@ -1,0 +1,75 @@
+Conjure Mappings: 
+-- <Space>eb  -  Evaulate whole buffer 
+-- <Space>lv  -  Open HUD 
+-- <Space>lq  -  Close all visible log windows
+-- <Space>lr  -  Reset log window
+-- <Space>ee  -  Evaluate inner form under cursor
+-- <Space>er  -  Evalute outermost form under cursor
+-- <Space>e!  -  Evaluate form and replace with result
+-- <Space>ew  -  Inspect contents of the variable under cursor
+-- <Space>E   -  Evaluate visual selection
+-- <Space>E[motion]  -  Evaluate given motion
+
+Syntax
+
+- Forms
+Clojure recognizes two kind of structures:
+  - Literal representation of data structures (numbers,strings,maps,vectors)
+  - Operations
+The term "form" can be used interchangably with "expression". Clojure evaluates every form to produce a value.
+Operations are how you do things, they take the form - opening parenthesis operator operator closing parenthesis. Commas are not needed in clojure, whitespace is used to seperate operands, any comma is treated as whitespace.
+
+Examples of valid forms:
+  - (+ 1 2 3)
+  - (str "Hello " "world")
+Examples of not valid forms:
+  - (+
+  - (str "Hello " ) "world")
+
+- Control Flow
+
+The most basic control flow operators in clojure are "if", "do" and "when".
+
+"if" expression structure: 
+  - (if boolean-form
+      then-form
+      optional-else-form)
+
+If the optional else branch is omitted and the boolean-form is false, clojure returns nil.
+
+The "do" operator lets you wrap up multiple forms in parentheses and run each of them.
+
+"if" with "do"
+  - (if true
+      (do (println "Success!")
+          "By Zeus's hammer!")
+      (do (println "Failure!")
+          "By Aquaman's trident!"))
+
+The "do" operator lets you do multiple things in each of the "if" expression's branches. 
+
+The "when" operator combines "if" and "do", but without an else branch. For example: 
+  - (when true
+      (println "Success!")
+      "abra cadabra")
+
+In clojure both nil and false are used to represent logical falsiness, whereas all other values are considered logically truthy. To check if a value is nil you can use the "nil?" function.
+In clojure the only way to test for equality is "=". Clojure uses the boolean operators "or" and "and". "or" returns either the first truthy value or the last value. "and" returns the first falsy value or, if no values are falsey, the last truthy value.
+
+TODO (Naming Values with def)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
