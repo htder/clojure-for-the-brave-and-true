@@ -174,4 +174,65 @@ Using a keyword:
   - (:a #{:a :b})
 
 
-TODO - functions
+
+Functions
+
+- Calling Functions
+
+We have already seen many function calls. As all functions have the same syntax: opening parenthesis, operator, operands and closing parenthesis. Function call is just another term for an operation where the operator is a function or a function expression (an expression that returns a function). Here is a function that return the "+" function:
+  - (or + -)
+
+You can then use this expression as the operator in another expression:
+  - ((or + 1) 1 2 3)
+
+The below forms are not valid function calls, and when run with return an error that is often encountered and means you are trying to use something as a function when it is not.
+  - (1 2 3 4)
+  - ("test" 1 2 3)
+
+An important detail about function calls in Clojure is that all function arguments are evaluated recursivly before passing them to the function. 
+
+- Function Calls, Macro Calls, and Special Forms
+While function calls are expressions that have a function expression as the operator, they are not the only kinds of expressions. There are two others - macro calls and special forms. Special forms such as "if" behave differently to function calls as they do not always evaluate all of their operands.
+You also cannot use special forms as arguments to functions. 
+Macros are similar to special forms as they also evaluate their operands differently from functions calls and cannot be passed as arguments to a function.
+
+- Defining Functions
+
+Function definitions are composed of five main parts: 
+  - defn 
+  - function name 
+  - a docstring (optional)
+  - parameters listed in brackets
+  - function body
+
+For example: 
+  - (defn too-enthusiastic
+      "Return a too enthusiastic greeting"
+      [name]
+      (str "HELLO " name " IT'S GREAT TO MEET YOU!"))
+
+  - (too-enthusiastic "George")
+
+The docustring is a useful wayt ot describe and document your code.
+Clojure functions can have zero or more parameters. Values passed to functions are called arguments. The number of parameters is the functions arity. Functions support arity overloading, where a different function body will run depending on the arity.
+Clojure also has a rest parameter, which puts all the rest of the arguments in a list with bound to a given name, indicated by an ampersand. Rest parameters can be mixed with normal parameters, but the rest parameters have to be last.
+
+Descructuring 
+Descructuring lets you concisely bind names to values within a collection. For example:
+  - (defn my-first
+    [[first-thing]]
+    first-thing)
+  
+  - (my-first ["oven" "bike" "war-axe"])
+
+The my first function associates the symbol first-thing with the first element of the vector that was passed in as an argument. You tell my-first to do this by placing the symbol first-thing within a vector.
+You can also descructure maps, for example: 
+  - (defn announce-treasure-location
+      [{lat :lat lng :lng}]
+      (println (str "Treasure lat: " lat))
+      (println (str "Treasure lng: " lng)))
+
+  - (announce-treasure-location {:lat 28.22 :lng 81.33})
+
+The function body can contain forms of any kind. Clojure automatically returns the last form evaluated. 
+In Clojure all functions are created equal, Clojure ahs no privileged functions.

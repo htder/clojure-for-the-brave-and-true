@@ -84,3 +84,30 @@
 (:a #{:a :b})
 
 (get #{:a :b} :a)
+
+((or - +) 1 2 3)
+
+((and (= 1 1) + ) 1 2 3)
+((first [+ 0]) 1 2 3)
+
+(inc 1.1)
+
+(map inc [0 1 2 3])
+
+(defn too-enthusiastic
+      "Return a too enthusiastic greeting"
+      [name]
+      (str "HELLO " name " IT'S GREAT TO MEET YOU!"))
+
+(too-enthusiastic "George")
+
+(defn codger-communication
+  [whippersnapper]
+  (str "Get off my lawn, " whippersnapper "!!!"))
+
+(defn codger 
+  [& whippersnappers]
+  (map codger-communication whippersnappers))
+
+(codger "Billy" "Fred" "Mary")
+
