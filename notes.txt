@@ -236,3 +236,5 @@ You can also descructure maps, for example:
 
 The function body can contain forms of any kind. Clojure automatically returns the last form evaluated. 
 In Clojure all functions are created equal, Clojure ahs no privileged functions.
+
+TODO anonymous functions
