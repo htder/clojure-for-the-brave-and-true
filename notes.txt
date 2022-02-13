@@ -56,20 +56,122 @@ The "when" operator combines "if" and "do", but without an else branch. For exam
 In clojure both nil and false are used to represent logical falsiness, whereas all other values are considered logically truthy. To check if a value is nil you can use the "nil?" function.
 In clojure the only way to test for equality is "=". Clojure uses the boolean operators "or" and "and". "or" returns either the first truthy value or the last value. "and" returns the first falsy value or, if no values are falsey, the last truthy value.
 
-TODO (Naming Values with def)
+- Naming Values with def
+You use "def" to bind a name to a value in clojure.
+
+(def greeting
+  "Hello world")
+
+In this case you're binding the name greeting to the string "Hello world". The term bind is used intentionally instead of "assign" which is often used in other languages. Other languages encourage you to perform multiple assignments to the same variable, this is not the case in clojure. In clojure you rarely need to change a name/value associaiton. 
 
 
 
+Data Structures
+
+All of clojures data structures are immutable.
+
+- Numbers
+Clojure can work with integers, floats and ratios.
+
+- Strings
+Clojure only allows double quotes to delineate string. Clojure also doesn't have string interpolation, only allowing string concatenation via the str function.
+
+- Maps
+Clojure maps are similar to dictionaries or hashes in other languages. They are a way to assoicate some value with some other value. The two kind of maps in Clojure are hash maps and sorted maps.
+
+An empty map: 
+  - {}  
+A map with keywords: 
+  - {:first-name "Charlie"
+     :last-name "McFishwich"}
+A map associaited with a function: 
+  - {"string-key" +}
+A nested map: 
+  - {:name {:first "John" :middle "Jacob" :last "schmidt"}}
+
+Map values can be of any type - strings, numbers, maps, vectors or function.
+
+The hash-map function can also be used in place of map literals
+(hash-map :a 1 :b 2)
+
+Values in a map can be looked up using the get function
+(get {:a 0 :b 1} :b)
+(get {:a 0 :b {:c "ho hum"}} :b)
+The get function will return nil if it doesn't find your key, or you can provide a default to get:
+(get {:a 0 :b 1} :c "empty")
+
+To retreive values from a nested map you can use the get-in function
+(get-in {:a 0 :b {:c "ho hum"}} [:b :c])
+
+Another way to look up a value in maps is to treat it like a function with the key as its argument
+({:name "The Human Coffeepot"} :name)
+
+- Keywords 
+Keywords are primarily used as keys in map, examples of keywords are:
+  - :a 
+  - :rumplestiltsken
+  - :34
+  - :_?
+
+Keywords can be used as functions that look up values in datastructures. In a map this looks like: 
+(:a {:a 1 :b 2 :c 3})
+which is the same as using the get function
+(get {:a 1 :b 2 :c 3} :a)
+You can also provide a default when using keywords in this fashion, in the same way defaults are provided with the get function.
+
+- Vectors 
+Vectors are similar to arrays, it is a 0-indexed collection. 
+Example of a vector:
+  - [3 2 1]
+
+Retreiving a value from a vector by index: 
+  - (get [3 2 1] 0)
+  - (get ["a" {:name "Pugsley Winterbottom"} "c"] 1)
+
+Vector element scan be of any types are you can mix types. You can also create vectors with the "vector" function.
+(vector "creepy" "full" "moon")
+
+You can use the "conj" function to add elements to the end of a vector:
+(conj [1 2 3] 4)
+
+- Lists 
+Similar to vectors, lists are a linear collection of values. However unlike vectors you cannot retrieve list elements with get. List literals are written as elements surronded by parentheses with a single quote at the beginning. Such as: 
+  - '(1 2 3 4)
+
+If you want to retrieve an element from a list, you can use the "nth" fucntion: 
+  - (nth '(:a :b :c) 0)
+
+List values can also be of any type. Lists can be created with the "list" funcion:
+  - (list 1 "two" {3 4})
+
+Elements can be added to a list with the "conj" function:
+  - (conj '(1 2 3) 4)
+However the element will be added to the beginning of the list.
+
+- Sets
+Sets are a collection of unique values. In Clojure there are two types of sets: hash sets and sorted sets. The literal notation for a hash set is: 
+  - #{"kurt vonnegut" 20 :icicle}
+You can also use the "hash-set" function to create a set:
+  - (hash-set 1 1 2 2)
+
+Sets can be created from existing vectors and list with use of the "set" function:
+  - (set [3 3 3 4 4])
+
+There are multiple ways to check for set membership:
+  - the "contains?" function
+  - the "get" function
+  - by using a keyword as a function with the set as its argument
+
+Using contains?:
+  - (contains? #{:a :b} :a)
+returns true of false.
+
+Using get: 
+  - (get #{:a :b} :a)
+returns the value if it exists and nil otherwise
+
+Using a keyword:
+  - (:a #{:a :b})
 
 
-
-
-
-
-
-
-
-
-
-
-
+TODO - functions
