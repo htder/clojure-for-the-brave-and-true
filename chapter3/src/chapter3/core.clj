@@ -111,3 +111,30 @@
 
 (codger "Billy" "Fred" "Mary")
 
+(map (fn [name] (str "Hi, " name))
+     ["Darth Vader" "Mr. Magoo"])
+
+((fn [x] (* x 3)) 8)
+
+(def my-special-multiplier (fn [x] (* x 3)))
+(my-special-multiplier 12)
+
+(#(* % 3) 8)
+
+(map #(str "Hi, " %)
+     ["Darth Vader" "Mr. Magoo"])
+
+(#(str %1 " and " %2) "cornbread" "butter beans")
+
+(#(identity %&) 1 "blarg" :yip)
+
+(defn inc-maker
+  "Crete a custom incrementor"
+  [inc-by]
+  #(+ % inc-by))
+
+(def inc3 (inc-maker 3))
+(def inc4 (inc-maker 4))
+
+(inc3 7)
+(inc4 8)

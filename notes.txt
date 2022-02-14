@@ -237,4 +237,28 @@ You can also descructure maps, for example:
 The function body can contain forms of any kind. Clojure automatically returns the last form evaluated. 
 In Clojure all functions are created equal, Clojure ahs no privileged functions.
 
-TODO anonymous functions
+- Anonymous Functions
+In Clojure functions do not have to have names. Functions without names are called anonymous functions. You can create anonymous functions in two ways:
+
+Using the "fn" form:
+  - (fn [param-list]
+      function body)
+
+The "fn" form can be treated similarly to the "defn" form. 
+
+Using the "#" form, e.g.:
+  - #(* % 3)
+Being used: 
+  - (#(* % 3) 8)
+
+The percent sign in the anonymous function indicated the argument passed to the function. It can accept multiple arguments, and a rest parameter.
+
+Multiple argument "#" anonymous function:  
+  - (#(str %1 " and " %2) "cornbread" "butter beans")
+
+Rest parameter "#" anonymous function:
+  - (#(identity %&) 1 "blarg" :yip)
+
+- Returning Functions 
+As has been shown so far, functions can return other function. The returned functions are closures, which means that they can access all the variables that were in scope when the function was created.
+
