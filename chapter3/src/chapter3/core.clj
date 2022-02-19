@@ -178,3 +178,16 @@
 (symmetrize-body-parts asym-hobbit-body-parts);
 
 
+(let [x 3] x)
+
+(def dalmatian-list ["Pongo", "Perdita", "Puppy 1", "Puppy2"])
+(let [dalmatians (take 2 dalmatian-list)]
+  dalmatians)
+
+(def x 0)
+(let [x 1] x)
+
+(let [x (inc x)] x)
+
+(let [[dog1 dog2 & dalmatians] dalmatian-list]
+  [dog1 dog2 dalmatians])
